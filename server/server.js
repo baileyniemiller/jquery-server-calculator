@@ -42,19 +42,30 @@ app.post('/calculate', function(req, res) {
 
     let operator = obj.operator;
     let result = 0;
-    // let total = req.body.total;
     let number1 = Number(obj.number1);
     let number2 = Number(obj.number2);
     console.log('Calculating...calculating...');
     console.log(obj);
     if (operator === '+') {
         result = number1 + number2;
-        numbersOutput.push(result);
-    } else {
-        res.sendStatus(400);
-        return;
+        numbersOutput.push(`${number1} + ${number2} = ${result}`);
     }
-    res.send({total: result});
+    else if (operator === '-') {
+        result = number1 - number2;
+        numbersOutput.push(`${number1} - ${number2} = ${result}`);
+    }
+    else if (operator === '*') {
+        result = number1 * number2;
+        numbersOutput.push(`${number1} * ${number2} = ${result}`);
+    }
+    else if (operator === '/') {
+        result = number1 / number2;
+        numbersOutput.push(`${number1} / ${number2} = ${result}`);
+    }
+     else {
+        res.sendStatus(400);
+    }
+    res.send({firstNumber: number1, secondNumber: number2, total: result});
 });
 
 //add a GET route to get back the result
@@ -66,7 +77,7 @@ app.get('/result', function(req, res) {
 //add another GET route to get the history of calculations
 app.get('/history', function(req, res) {
     console.log('We\'d like to see a history array.');
-    res.send(numbersHistory);
+    res.send(numbersOutput);
 })
 
 app.listen(PORT, function() {
