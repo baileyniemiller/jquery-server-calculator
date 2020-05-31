@@ -4,6 +4,7 @@ function readyNow(){
     console.log('JQ is working!');
     $('.equals').on('click', startCalculation);
     $('.clear').on('click', clearInputs);
+    $('#add').on('click', )
 }
 
 
@@ -16,23 +17,41 @@ function clearInputs() {
 // const subtract = $('#subtract');
 // const multiply = $('#multiply');
 // const divide = $('#divide');
+
+// const operatorValues = {
+//     addition: add,
+//     subtraction: subtract,
+//     multiplication: multiply,
+//     division: divide,
+// }
+
 // const total = $('#total');
 
 function startCalculation(event) {
     const number1In = $('#number1In').val();
     const number2In = $('#number2In').val();
+    const add = $('#add');
+    const subtract = $('#subtract');
+    const multiply = $('#multiply');
+    const divide = $('#divide');
     const numbersIn = {
         number1: number1In,
         number2: number2In,
-        operator:  '',
+        operator: '',
     };
+    // const operatorValues = {
+    //     addition: add,
+    //     subtraction: subtract,
+    //     multiplication: multiply,
+    //     division: divide,
+    // }
     $.ajax({
         method: 'POST',
         url: '/calculate',
         data: numbersIn,
     }).then(function (response) {
-        console.log('Numbers have been received!');
-
+        getResults();
+        console.log('Numbers have been received!', response);
     }).catch(function (response) {
         console.log('Sorry, error in retrieving numbers.');
     });
@@ -40,20 +59,24 @@ function startCalculation(event) {
 
 
 function getResults() {
+    // const add = $('#add');
+    // const subtract = $('#subtract');
+    // const multiply = $('#multiply');
+    // const divide = $('#divide');
+    // const operatorValues = {
+    //     addition: add,
+    //     subtraction: subtract,
+    //     multiplication: multiply,
+    //     division: divide,
+    // }
     $.ajax({
         type: 'GET',
-        url: '/result'
+        url: '/result',
     }).then(function (response) {
         // append data to the DOM
-        //empty inputs
-        $('#number1').empty();
-        $('#number2').empty();
-        $('#total').empty();
-        // for (let i = 0; i < response.length; i++) {
-        //     let answer = response[i];
-        $('#total').append(numbersOutput);
+        $('.totalList').empty();
+        $('.totalList').append(`<li> ${response} </li>`);
         console.log('The equal button is being clicked.');
-        // }
     });
 }
 

@@ -12,11 +12,7 @@ app.use(express.static('server/public'));
 //////////////////////////////////////////////////
 
 let numbersOutput = [];
-let numbersHistory = [];
-
-
-
-// calculate();
+// let numbersHistory = [];
 
 
 //add a POST route to allow new numbers to be calculated
@@ -40,30 +36,31 @@ app.post('/calculate', function(req, res) {
     console.log(obj);
 
 
-    let operator = obj.operator;
+    let operator = obj.operator
     let result = 0;
     let number1 = Number(obj.number1);
     let number2 = Number(obj.number2);
     console.log('Calculating...calculating...');
     console.log(obj);
-    if (operator === '+') {
+    if (operator === obj.operator.addition) {
         result = number1 + number2;
         numbersOutput.push(`${number1} + ${number2} = ${result}`);
     }
-    else if (operator === '-') {
+    if (operator === obj.operator.subtraction) {
         result = number1 - number2;
         numbersOutput.push(`${number1} - ${number2} = ${result}`);
     }
-    else if (operator === '*') {
+    if (operator === obj.operator.multiplication) {
         result = number1 * number2;
         numbersOutput.push(`${number1} * ${number2} = ${result}`);
     }
-    else if (operator === '/') {
+    if (operator === obj.operator.division) {
         result = number1 / number2;
         numbersOutput.push(`${number1} / ${number2} = ${result}`);
     }
      else {
-        res.sendStatus(400);
+         console.log('Error');
+        // res.sendStatus(400);
     }
     res.send({firstNumber: number1, secondNumber: number2, total: result});
 });
