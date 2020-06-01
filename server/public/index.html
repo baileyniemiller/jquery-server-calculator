@@ -6,15 +6,19 @@
     <script src="vendors/jquery.js"></script>
     <script src="scripts/client.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Tera&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    
     <header>
-        <h1>Server Side Calculator</h1>
-        <h3>Week 8 Weekend Challenge</h3>
+        <h1>Calculator</h1>
     </header>
 
+    <div class="background">
     <input type="number" id="number1In"/>
+
+    
     <button class="operator" id="add">+</button>
     <button class="operator" id="subtract">-</button>
     <button class="operator" id="multiply">*</button>
@@ -22,10 +26,11 @@
     <input type="number" id="number2In"/>
     <button class="equals">=</button>
     <button class="clear">C</button>
+    
 
-    <h2 id="total">Total: </h2>
+    <h2>Total: <span id='total'></span> </h2>
 
     <ul class="totalList"></ul>
-
+    </div>
 </body>
 </html>

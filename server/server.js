@@ -30,7 +30,6 @@ app.post('/calculate', function(req, res) {
         }
     */
     const obj = req.body;
-    console.log(Number(obj.number1));
     // obj is just an object {bread: 'bagel'}
 
     console.log(obj);
@@ -42,28 +41,28 @@ app.post('/calculate', function(req, res) {
     let number2 = Number(obj.number2);
     console.log('Calculating...calculating...');
     console.log(obj);
-    if (operator === obj.operator.addition) {
+    if (operator === '+') {
         result = number1 + number2;
-        numbersOutput.push(`${number1} + ${number2} = ${result}`);
+        
     }
-    if (operator === obj.operator.subtraction) {
+    else if (operator === '-') {
         result = number1 - number2;
-        numbersOutput.push(`${number1} - ${number2} = ${result}`);
     }
-    if (operator === obj.operator.multiplication) {
+    else if (operator === '*') {
         result = number1 * number2;
-        numbersOutput.push(`${number1} * ${number2} = ${result}`);
     }
-    if (operator === obj.operator.division) {
+    else if (operator === '/') {
         result = number1 / number2;
-        numbersOutput.push(`${number1} / ${number2} = ${result}`);
+        // numbersOutput.unshift(`${number1} / ${number2} = ${result}`);
     }
      else {
          console.log('Error');
         // res.sendStatus(400);
     }
+    obj.result = result;
+    numbersOutput.unshift(obj);
     res.send({firstNumber: number1, secondNumber: number2, total: result});
-});
+}); 
 
 //add a GET route to get back the result
 app.get('/result', function(req, res) {

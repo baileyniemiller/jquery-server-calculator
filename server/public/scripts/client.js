@@ -4,47 +4,30 @@ function readyNow(){
     console.log('JQ is working!');
     $('.equals').on('click', startCalculation);
     $('.clear').on('click', clearInputs);
-    $('#add').on('click', )
+    $('#add').on('click' , function() {numbersIn.operator = '+'});
+    $('#subtract').on('click', function () {numbersIn.operator = '-'});
+    $('#multiply').on('click' , function() {numbersIn.operator = '*'});
+    $('#divide').on('click' , function() {numbersIn.operator = '/'});
+    $('.totalList').val('');
 }
 
+const numbersIn = {
+    number1: 0,
+    number2: 0,
+    operator: '',
+    result: '',
+};
 
 function clearInputs() {
     $('#number1In').val('');
     $('#number2In').val('');
 }
 
-// const add = $('#add');
-// const subtract = $('#subtract');
-// const multiply = $('#multiply');
-// const divide = $('#divide');
-
-// const operatorValues = {
-//     addition: add,
-//     subtraction: subtract,
-//     multiplication: multiply,
-//     division: divide,
-// }
-
 // const total = $('#total');
 
 function startCalculation(event) {
-    const number1In = $('#number1In').val();
-    const number2In = $('#number2In').val();
-    const add = $('#add');
-    const subtract = $('#subtract');
-    const multiply = $('#multiply');
-    const divide = $('#divide');
-    const numbersIn = {
-        number1: number1In,
-        number2: number2In,
-        operator: '',
-    };
-    // const operatorValues = {
-    //     addition: add,
-    //     subtraction: subtract,
-    //     multiplication: multiply,
-    //     division: divide,
-    // }
+    numbersIn.number1 = $('#number1In').val();
+    numbersIn.number2 = $('#number2In').val();
     $.ajax({
         method: 'POST',
         url: '/calculate',
@@ -59,24 +42,20 @@ function startCalculation(event) {
 
 
 function getResults() {
-    // const add = $('#add');
-    // const subtract = $('#subtract');
-    // const multiply = $('#multiply');
-    // const divide = $('#divide');
-    // const operatorValues = {
-    //     addition: add,
-    //     subtraction: subtract,
-    //     multiplication: multiply,
-    //     division: divide,
-    // }
     $.ajax({
         type: 'GET',
         url: '/result',
     }).then(function (response) {
         // append data to the DOM
         $('.totalList').empty();
-        $('.totalList').append(`<li> ${response} </li>`);
-        console.log('The equal button is being clicked.');
+        for (let i=0; i<response.length; i++) {
+            let ourObj = response[i];
+            $('.totalList').append(`<li> ${ourObj.number1} ${ourObj.operator} ${ourObj.number2} = ${ourObj.result} </li>`);
+            $('#total').empty();
+            $('#total').append(response[0].result);
+            console.log(response);
+        }
+        return;
     });
 }
 
