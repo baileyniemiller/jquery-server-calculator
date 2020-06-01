@@ -76,6 +76,12 @@ app.get('/history', function(req, res) {
     res.send(numbersOutput);
 })
 
+// how to DELETE /history
+// app.delete('/history', function (req, res) {
+//     history = [];
+//     res.sendStatus(202); // 202: accepted 
+// })
+
 app.listen(PORT, function() {
     console.log('Server is running on port', PORT)
 });
