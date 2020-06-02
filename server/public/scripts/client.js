@@ -59,11 +59,6 @@ function getResults() {
     });
 }
 
-    // Active button color
-    // $('.btn-operator').removeClass('btn-active');
-    // btn.addClass('btn-active');
-
-
    // $('#number1In').val('');
    // $('#number2In').val('');
    // let runningList = $('.totalList');
