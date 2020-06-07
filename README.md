@@ -1,6 +1,4 @@
-# Project Name
-
-## Server Side Calculator
+# Server Side Calculator
 
 ## Description
 
@@ -17,7 +15,7 @@ This is a calculator where the user can input two values (2 input elements) and 
 ## Installation
 
 1. Fork and clone the project
-1. Open in editor of your chouse
+1. Open in editor of your choice
 1. Open terminal and run npm install 
 1. Run node server/server.js in your terminal
 1. Open up a browser
