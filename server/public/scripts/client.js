@@ -9,6 +9,7 @@ function readyNow(){
     $('#multiply').on('click' , function() {numbersIn.operator = '*'});
     $('#divide').on('click' , function() {numbersIn.operator = '/'});
     $('.totalList').val('');
+    getResults();
 }
 
 const numbersIn = {
